@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(300,62%,58%)]">T3</span> App
+            <span className="block xl:inline bg-clip-text text-transparent bg-gradient-to-r from-[#ff5cd6] to-[#a59bfd] relative z-10">albumaura</span>
           </h1>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
@@ -68,16 +68,23 @@ const AuthShowcase: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+      <p className="text-center text-2xl text-white ">
+        {sessionData && <span>Logged in as <span className=" bg-clip-text text-transparent bg-gradient-to-r from-[#ff5cd6] to-[#a59bfd]">{sessionData.user?.name}</span></span>}
         {secretMessage && <span> - {secretMessage}</span>}
       </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+      <div className="flex flex-row items-center justify-center space-x-4">
+    <button 
+        className="flex-1 rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20" 
         onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
+    >
         {sessionData ? "Sign out" : "Sign in"}
-      </button>
+    </button>
+    <button 
+        className="flex-1 rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+    >
+        <Link href="/generate">Generate</Link>
+    </button>
+</div>
     </div>
   );
 };

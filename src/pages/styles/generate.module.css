@@ -1,0 +1,167 @@
+.spinner {
+  margin: 20px;
+  width: 100px;
+  height: 100px;
+  background: #f00;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 10000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 10000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 10000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  
+  animation-name: spin;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.hero-container {
+  position: relative;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  height: 100px;
+  perspective: 300px; /* Adjusts the 3D perspective */
+  overflow: visible;
+}
+
+.hero-container:before {
+  top: 10%; /* Adjusted positioning */
+  left: -25%; /* Start from the left */
+  transform: rotateX(15deg) rotateY(20deg) scale(0.9);
+  transform-origin: 50% 100% -50px; /* Adjusts the pivot point */
+  opacity: 0.7;
+}
+
+.hero-container:after {
+  bottom: 50px; /* Adjusted positioning */
+  left: -100%; /* Start from the left */
+  transform: rotateX(0deg) rotateY(-20deg) scale(0.9);
+  transform-origin: 50% 0% -50px; /* Adjusts the pivot point */
+  opacity: 0.7;
+}
+
+@keyframes rotatingGradient {
+  0%, 100% {
+    background-position: 50% 50%, 100% 0%;
+  }
+  50% {
+    background-position: 50% 50%, 0% 100%;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 900;
+  background:
+    radial-gradient(circle closest-side, white, transparent),
+    linear-gradient(45deg, #ff5cd6 25%, #a59bfd 25%, #a59bfd 75%, #ff5cd6 75%, #ff5cd6);
+  background-size: 50% 50%, 200% 200%;
+  background-position: calc(50% - 20px) 50%, 100% 0%; /* Adjust the 20px value based on the position of 'X' in your layout */
+  animation: pulsate 2s infinite, rotatingGradient 3s infinite; 
+  -webkit-background-clip: text, text;
+  color: transparent;
+  z-index: 1; 
+  position: relative;
+}
+
+@keyframes pulsate {
+  0%, 100% {
+    background-size: 50% 50%, 200% 200%;
+  }
+  50% {
+    background-size: 100% 100%, 200% 200%;
+  }
+}
+
+.scene {
+  width: 10em;
+  height: 10em;  
+  position: absolute;
+  margin: 2em 0em;
+  perspective: 0em;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(45deg);
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: rotate 10s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes rotate {
+  from  {
+    transform: translateZ(15em) rotateY(0deg);
+  }
+  to {
+    transform: translateZ(15em) rotateY(360deg);
+  }
+}
+
+@keyframes fadeOut {
+  65% 100% {
+    opacity: 1;
+  }
+  10%, 40% {
+    opacity: 0;
+  }
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 0px solid #333;
+  font-size: 0.8em;
+  background-color: rgba(3, 121, 255, 0.5);
+  animation: fadeOut 10s linear infinite;
+  color: #FFF;
+  line-height: 10em;
+  -webkit-background-clip: text;
+}
+
+.username-separator {
+  color: white;
+  margin: 0 0.5em; /* Adding some horizontal space before and after the 'X' */
+}
+
+.pi1 {
+  transform: rotateY(0deg) translateZ(6em); 
+  animation-delay: 1.5s;
+  /* color: transparent; */
+  /* background: linear-gradient(to right, #ff5cd6, #a59bfd); */
+}
+
+.pi2 {
+  transform: rotateY(60deg) translateZ(6em);
+  animation-delay: 0s;
+}
+
+.pi3 {
+  transform: rotateY(120deg) translateZ(6em);
+  animation-delay: -1s;
+}
+
+.pi4 {
+  transform: rotateY(-120deg) translateZ(6em);
+  animation-delay: -4.2s;
+}
+
+.pi5 {
+  transform: rotateY(-60deg) translateZ(6em);
+  animation-delay: -6.5s;
+}
+
+.pi6 {
+  transform: rotateY(180deg) translateZ(6em);
+  animation-delay: -3.55s;
+}
