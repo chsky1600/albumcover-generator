@@ -9,12 +9,14 @@ import { signIn, signOut } from "next-auth/react";
 import { Button } from "~/component/Button";
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
+// import Image from 'next/image' # disable to use base TS img tag
 
 
 const GeneratePage: NextPage = () => {
   const [form, setForm] = useState({
     prompt: "",
   });
+  const [imageUrl, setImageUrl] = useState("");
 
   const { data: session } = useSession();
   const { data: sessionData } = useSession();
@@ -30,8 +32,9 @@ const GeneratePage: NextPage = () => {
 
   const generateCover = api.generate.generateCover.useMutation({
     onSuccess(data) {
-      console.log('mutated', data)
-
+      console.log('mutated', data.imageUrl);
+      if (!data.imageUrl) return;
+        setImageUrl(data.imageUrl);
     },
   });
 
@@ -41,6 +44,8 @@ const GeneratePage: NextPage = () => {
     generateCover.mutate({
       prompt: form.prompt,
     })
+
+    setForm({prompt: ""})
   };
 
   return (
@@ -238,6 +243,12 @@ const GeneratePage: NextPage = () => {
             <Button className="bg-blue-400 transition hover:bg-blue-500 rounded px-4 py-2">Generate</Button>
           </FormGroup>
         </form>
+        <img 
+        src={'data:image/png;base64,' + imageUrl}
+        alt="your generated image here"
+        width="200"
+        height="200"
+        />
         </div>
       </main>
     </>
